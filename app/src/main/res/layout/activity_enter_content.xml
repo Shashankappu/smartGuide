@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EnterContentActivity">
+    <TextView
+        android:id="@+id/AppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/app_name"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter the Details"
+        android:textSize="32sp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_below="@id/AppName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp" />
+    <EditText
+        android:id="@+id/Artname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_button_bg"
+        android:layout_below="@id/title_text"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="10dp"
+        android:hint="Art Name"
+        android:textColorHint="#888888"
+        android:textColor="#000000"
+        android:paddingRight="10dp"
+        android:longClickable="false"
+        android:padding="12dp" />
+    <EditText
+        android:id="@+id/detailsEdt"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_button_bg"
+        android:layout_below="@id/Artname"
+        android:hint="Type the art details here"
+        android:textColorHint="#888888"
+        android:textColor="#000000"
+        android:paddingRight="10dp"
+        android:longClickable="false"
+        android:padding="12dp"
+        android:gravity="top"
+        android:maxLength="1000" />
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:text="Submit"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/custom_button_bg"
+        android:backgroundTint="@color/black"
+        android:textAllCaps="false"
+        android:textSize="24sp" />
+
+</RelativeLayout>

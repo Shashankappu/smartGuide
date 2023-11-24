@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity">
+
+    <TextView
+        android:id="@+id/title_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Welcome back!"
+        android:textColor="#706D6D"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_text2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="Sign In"
+        android:textColor="#000000"
+        android:textSize="40sp" />
+
+    <RadioGroup
+        android:id="@+id/radiogrp"
+        android:layout_width="300dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/title_text"
+        android:layout_marginStart="70dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RadioButton
+            android:id="@+id/guideradio"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Guide" />
+
+        <RadioButton
+            android:id="@+id/travellerradio"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Traveller" />
+
+    </RadioGroup>
+    <EditText
+        android:id="@+id/GuideID_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_button_bg"
+        android:layout_below="@id/radiogrp"
+        android:layout_marginTop="16dp"
+        android:hint="Guide ID"
+        android:textColorHint="#888888"
+        android:textColor="#000000"
+        android:visibility="gone"
+        android:paddingRight="10dp"
+        android:longClickable="false"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/email_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/GuideID_edt"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_button_bg"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#888888" />
+
+    <EditText
+        android:id="@+id/password_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email_edittext"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_button_bg"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:longClickable="false"
+        android:padding="12dp"
+        android:paddingRight="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#888888" />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password_edittext"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_button_bg"
+        android:backgroundTint="@color/black"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/donthaveacc_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/createacc_txtbtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Don't have an account yet?"
+        android:textColor="#595757"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/createacc_txtbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="50dp"
+        android:text="Sign up"
+        android:textColor="#0779EC"
+        android:textSize="16sp" />
+
+</RelativeLayout>
