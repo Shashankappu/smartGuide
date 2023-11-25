@@ -21,6 +21,10 @@ android {
         }
         python {
             version "3.11"
+
+        }
+        python{
+            buildPython "/usr/bin/python3.11"
         }
     }
 
@@ -34,6 +38,11 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets{
+        main{
+            python.srcDirs "src/main/python"
+        }
     }
 
 }

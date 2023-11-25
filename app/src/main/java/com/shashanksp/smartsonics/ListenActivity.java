@@ -12,12 +12,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
+import com.chaquo.python.Python;
+import com.chaquo.python.PyObject;
+import com.chaquo.python.android.AndroidPlatform;
 
 public class ListenActivity extends AppCompatActivity {
     Button backtoscanBtn;
@@ -52,6 +55,22 @@ public class ListenActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        if (!Python.isStarted()) {
+            Python.start(new AndroidPlatform(this));
+        }
+        Python py = Python.getInstance();
+        PyObject scriptModule = py.getModule("model");
+
+        // Replace the prompt with your desired input
+        String prompt = details;
+        String videoPath = scriptModule.callAttr("generate_video", prompt).toString();
+
+        VideoView videoView = findViewById(R.id.ganvideo);
+        videoView.setVideoPath(videoPath);
+        videoView.start();
+
+
 
 //        Timer t = new Timer();
 //        //Set the schedule function and rate
