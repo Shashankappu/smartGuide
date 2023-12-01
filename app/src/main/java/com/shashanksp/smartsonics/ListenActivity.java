@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -21,6 +22,9 @@ import androidx.core.app.NotificationManagerCompat;
 import com.chaquo.python.Python;
 import com.chaquo.python.PyObject;
 import com.chaquo.python.android.AndroidPlatform;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListenActivity extends AppCompatActivity {
     Button backtoscanBtn;
@@ -59,18 +63,20 @@ public class ListenActivity extends AppCompatActivity {
         if (!Python.isStarted()) {
             Python.start(new AndroidPlatform(this));
         }
+
+        // Call the Python function
         Python py = Python.getInstance();
-        PyObject scriptModule = py.getModule("model");
+        PyObject pyObject = py.getModule("model");
+        PyObject result = pyObject.callAttr("extract_keywords", "Virupaksha Temple (ʋɪruːpaː'kʂɐ) is located in Hampi in the Vijayanagara district of Karnataka, India. It is part of the Group of Monuments at Hampi, designated as a UNESCO World Heritage Site. The temple is dedicated to Sri Virupaksha, a form of Shiva. The temple was built by Lakkan Dandesha, a nayaka (chieftain) under the ruler Deva Raya II also known as Prauda Deva Raya of the Vijayanagara Empire.[1]\n" +
+                "\n" +
+                "Hampi, capital of the Vijayanagara empire, sits on the banks of the Tungabhadra River (Pampa hole/Pampa river). Virupaksha Temple is the main center of pilgrimage (ತೀರ್ಥಯಾತ್ರೆ )at Hampi, and had been considered the most sacred sanctuary over the centuries. It is intact among the surrounding ruins and is still used in worship . The temple is dedicated to Lord Shiva, known here as Virupaksha/Pampa pathi, as the consort of the local goddess Pampadevi who is associated with the Tungabhadra River. There is also a Virupakshini Amma temple (mother goddess) in a village called Nalagamapalle, Chittoor district, Andhra Pradesh, approximately 100 km from Tirupati.", 5);
 
-        // Replace the prompt with your desired input
-        String prompt = details;
-        String videoPath = scriptModule.callAttr("generate_video", prompt).toString();
+        List<String> keywords = new ArrayList<>();
+        for (PyObject obj : result.asList()) {
+            keywords.add(obj.toJava(String.class));
+        }
 
-        VideoView videoView = findViewById(R.id.ganvideo);
-        videoView.setVideoPath(videoPath);
-        videoView.start();
-
-
+        Log.d("MainActivity", "Top Keywords: " + keywords);
 
 //        Timer t = new Timer();
 //        //Set the schedule function and rate

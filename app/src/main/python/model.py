@@ -1,15 +1,22 @@
-# src/main/python/model.py
+#src/main/python/model.py
 
-from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
-from diffusers.utils import export_to_video
-import torch
+from sklearn.feature_extraction.text import TfidfVectorizer
 
-def generate_video(prompt):
-    pipe = DiffusionPipeline.from_pretrained("cerspense/zeroscope_v2_576w", torch_dtype=torch.float16)
-    pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
-    pipe.enable_model_cpu_offload()
+def extract_keywords(paragraph, num_keywords=5):
+    # Create the TF-IDF vectorizer
+    vectorizer = TfidfVectorizer(stop_words='english')
 
-    video_frames = pipe(prompt, num_inference_steps=40, height=320, width=576, num_frames=24).frames
-    video_path = export_to_video(video_frames)
+    # Fit and transform the vectorizer on the provided paragraph
+    tfidf_matrix = vectorizer.fit_transform([paragraph])
 
-    return video_path
+    # Get feature names (words)
+    feature_names = vectorizer.get_feature_names_out()
+
+    # Get the indices of the top N keywords based on TF-IDF scores
+    top_keyword_indices = tfidf_matrix.sum(axis=0).argsort()[:, ::-1][:, :num_keywords]
+
+    # Extract the top keywords from the feature names
+    top_keywords = [feature_names[index] for index in top_keyword_indices.tolist()[0]]
+
+    return top_keywords
+
