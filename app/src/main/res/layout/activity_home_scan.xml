@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/root_layout"
     tools:context=".HomeScanActivity">
 
     <TextView
@@ -26,9 +27,12 @@
     <com.budiyev.android.codescanner.CodeScannerView
         android:id="@+id/scanner_view"
         android:layout_width="450dp"
+        android:layout_height="300dp"
         android:layout_below="@id/title_text"
-        android:layout_height="450dp"
-        android:layout_margin="30dp" />
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp" />
 
     <Button
         android:id="@+id/scanBtn"
@@ -42,5 +46,84 @@
         android:background="@drawable/custom_button_bg"
         android:padding="10dp"
         android:text="Scan" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="32dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:id="@+id/mainFabBtn"
+            app:srcCompat="@drawable/add_story_fab"
+            android:backgroundTint="@color/black"
+            app:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="mainFAB" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:id="@+id/viewstoryFabBtn"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/view_story"
+            android:backgroundTint="@color/black"
+            android:tint="@color/white"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@id/mainFabBtn"
+            app:layout_constraintEnd_toEndOf="@id/mainFabBtn"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:id="@+id/addstoryFabBtn"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/addstory"
+            android:backgroundTint="@color/black"
+            android:tint="@color/white"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@id/viewstoryFabBtn"
+            app:layout_constraintEnd_toEndOf="@id/mainFabBtn"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/addstoryTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button_bg"
+            android:text="Add Story"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:elevation="8dp"
+            android:paddingVertical="2dp"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/addstoryFabBtn"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="14dp"
+            app:layout_constraintRight_toLeftOf="@id/addstoryFabBtn"/>
+        <TextView
+            android:id="@+id/viewstoryTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button_bg"
+            android:text="View Story"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:elevation="8dp"
+            android:paddingVertical="2dp"
+            android:visibility="invisible"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/viewstoryFabBtn"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="14dp"
+            app:layout_constraintRight_toLeftOf="@id/viewstoryFabBtn"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

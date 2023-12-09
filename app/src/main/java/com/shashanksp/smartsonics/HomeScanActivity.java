@@ -8,8 +8,12 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,16 +24,27 @@ import androidx.core.app.ActivityCompat;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.zxing.Result;
 
 
 
 public class HomeScanActivity extends AppCompatActivity {
+    RelativeLayout rootlayout ;
+    private boolean isExpanded = false;
     private CodeScanner mCodeScanner;
     private String artId, guideId;
     private boolean isGuide;
+    TextView addstoryTV,viewstoryTV;
+    FloatingActionButton viewstorybtn,addstorybtn;
+    FloatingActionButton mainfabBtn;
     private static final String PREF_GUIDE_ID = "guideId";
     private static final String PREF_IS_GUIDE = "isGuide";
+
+    private Animation fromBottomAnim;
+    private Animation toBottomAnim;
+    private Animation rotateclockwiseAnim;
+    private Animation rotateanticlockwiseAnim;
 
 
     @Override
@@ -40,6 +55,21 @@ public class HomeScanActivity extends AppCompatActivity {
 
         Button scanBtn = findViewById(R.id.scanBtn);
         ImageView logoutBtn = findViewById(R.id.logoutbtn);
+        rootlayout  =findViewById(R.id.root_layout);
+        rootlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isExpanded){
+                    shrinkFab();
+                }
+            }
+        });
+
+        addstoryTV = findViewById(R.id.addstoryTV);
+        viewstoryTV = findViewById(R.id.viewstoryTV);
+        viewstorybtn = findViewById(R.id.viewstoryFabBtn);
+        mainfabBtn = findViewById(R.id.mainFabBtn);
+        addstorybtn = findViewById(R.id.addstoryFabBtn);
 
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
@@ -49,6 +79,24 @@ public class HomeScanActivity extends AppCompatActivity {
         // Get guideId and isGuide from SharedPreferences
 //        guideId = getGuideIdFromPrefs();
 //        isGuide = getIsGuideFromPrefs();
+
+        // Lazily initialize animation variables
+        fromBottomAnim = getAnimation(R.anim.from_bottom_fab);
+        toBottomAnim = getAnimation(R.anim.to_bottom_fab);
+        rotateclockwiseAnim = getAnimation(R.anim.rotate_clock_wise);
+        rotateanticlockwiseAnim = getAnimation(R.anim.rotate_anti_clock_wise);
+
+        mainfabBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isExpanded){
+                    shrinkFab();
+                }else{
+                    expandFab();
+                }
+            }
+        });
+
 
 
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
@@ -106,6 +154,25 @@ public class HomeScanActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void shrinkFab() {
+        mainfabBtn.startAnimation(rotateanticlockwiseAnim);
+        addstorybtn.startAnimation(toBottomAnim);
+        viewstorybtn.startAnimation(toBottomAnim);
+        viewstoryTV.startAnimation(toBottomAnim);
+        addstoryTV.startAnimation(toBottomAnim);
+
+        isExpanded = !isExpanded;
+    }
+    private void expandFab() {
+        mainfabBtn.startAnimation(rotateclockwiseAnim);
+        addstorybtn.startAnimation(fromBottomAnim);
+        viewstorybtn.startAnimation(fromBottomAnim);
+        viewstoryTV.startAnimation(fromBottomAnim);
+        addstoryTV.startAnimation(fromBottomAnim);
+
+        isExpanded = !isExpanded;
     }
 
     protected void permissionCheck() {
@@ -172,6 +239,10 @@ public class HomeScanActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear(); // This will clear all the data in the SharedPreferences
         editor.apply();
+    }
+    // Helper method to lazily initialize animations
+    private Animation getAnimation(int resId) {
+        return AnimationUtils.loadAnimation(HomeScanActivity.this, resId);
     }
 
 }
