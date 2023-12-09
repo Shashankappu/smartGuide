@@ -97,6 +97,26 @@ public class HomeScanActivity extends AppCompatActivity {
             }
         });
 
+        addstorybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isExpanded){
+                    Intent i = new Intent(HomeScanActivity.this,AddStoryActivity.class);
+                    startActivity(i);
+                }
+            }
+        });
+        viewstorybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isExpanded){
+                    Intent i = new Intent(HomeScanActivity.this,StoriesActivity.class);
+                    startActivity(i);
+                }
+            }
+        });
+
+
 
 
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
