@@ -21,11 +21,9 @@ import java.util.ArrayList;
 
 public class GuidelistActivity extends AppCompatActivity implements GuideAdapter.OnGuideClickListener {
     Button continueBtn;
-    private RecyclerView recyclerView;
     private GuideAdapter guideAdapter;
     private ArrayList<String> guideIds;
     String artId;
-
 
     public GuidelistActivity() {
     }
@@ -47,7 +45,7 @@ public class GuidelistActivity extends AppCompatActivity implements GuideAdapter
 //                startActivity(i);
 //            }
 //        });
-        recyclerView = findViewById(R.id.guideRV);  // Add this line to initialize recyclerView
+        RecyclerView recyclerView = findViewById(R.id.guideRV);  // Add this line to initialize recyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         guideAdapter = new GuideAdapter(guideIds, this, artId);
         recyclerView.setAdapter(guideAdapter);
@@ -98,7 +96,7 @@ public class GuidelistActivity extends AppCompatActivity implements GuideAdapter
                     // For example, you might update a TextView or log the details
                     Intent i = new Intent(GuidelistActivity.this,ListenActivity.class);
                     i.putExtra("details",details);
-                    i.putExtra("artname",artId);
+                    i.putExtra("artId",artId);
                     startActivity(i);
                     Toast.makeText(GuidelistActivity.this, "Details for Guide " + guideId + ": " + details, Toast.LENGTH_SHORT).show();
                 } else {

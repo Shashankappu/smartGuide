@@ -6,9 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,7 +30,6 @@ public class EnterContentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (guideId.isEmpty() || artId.isEmpty() || details.getText().toString().isEmpty()) {
-                    // Handle the case where any field is empty
                     Toast.makeText(EnterContentActivity.this,"Enter the details"+guideId+artId+details,Toast.LENGTH_LONG).show();
                 }else{
                     DatabaseReference artReference = databaseReference.child(artId).child(guideId);

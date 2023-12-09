@@ -1,5 +1,6 @@
 package com.shashanksp.smartsonics;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -19,9 +21,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import com.chaquo.python.Python;
-import com.chaquo.python.PyObject;
-import com.chaquo.python.android.AndroidPlatform;
+
+
+import org.json.JSONObject;
+import org.json.JSONTokener;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,10 +52,12 @@ public class ListenActivity extends AppCompatActivity {
         titleTV = findViewById(R.id.title_text);
         micBtn = findViewById(R.id.mic_btn);
 
-        artId = getIntent().getStringExtra("artname");
+        artId = getIntent().getStringExtra("artId");
         details = getIntent().getStringExtra("details");
         titleTV.setText(artId);
         resultTV.setText(details);
+
+
 
         backtoscanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,23 +68,29 @@ public class ListenActivity extends AppCompatActivity {
             }
         });
 
-        if (!Python.isStarted()) {
-            Python.start(new AndroidPlatform(this));
-        }
 
-        // Call the Python function
-        Python py = Python.getInstance();
-        PyObject pyObject = py.getModule("model");
-        PyObject result = pyObject.callAttr("extract_keywords", "Virupaksha Temple (ʋɪruːpaː'kʂɐ) is located in Hampi in the Vijayanagara district of Karnataka, India. It is part of the Group of Monuments at Hampi, designated as a UNESCO World Heritage Site. The temple is dedicated to Sri Virupaksha, a form of Shiva. The temple was built by Lakkan Dandesha, a nayaka (chieftain) under the ruler Deva Raya II also known as Prauda Deva Raya of the Vijayanagara Empire.[1]\n" +
-                "\n" +
-                "Hampi, capital of the Vijayanagara empire, sits on the banks of the Tungabhadra River (Pampa hole/Pampa river). Virupaksha Temple is the main center of pilgrimage (ತೀರ್ಥಯಾತ್ರೆ )at Hampi, and had been considered the most sacred sanctuary over the centuries. It is intact among the surrounding ruins and is still used in worship . The temple is dedicated to Lord Shiva, known here as Virupaksha/Pampa pathi, as the consort of the local goddess Pampadevi who is associated with the Tungabhadra River. There is also a Virupakshini Amma temple (mother goddess) in a village called Nalagamapalle, Chittoor district, Andhra Pradesh, approximately 100 km from Tirupati.", 5);
 
-        List<String> keywords = new ArrayList<>();
-        for (PyObject obj : result.asList()) {
-            keywords.add(obj.toJava(String.class));
-        }
 
-        Log.d("MainActivity", "Top Keywords: " + keywords);
+
+
+
+//        if (!Python.isStarted()) {
+//            Python.start(new AndroidPlatform(this));
+//        }
+//
+//        // Call the Python function
+//        Python py = Python.getInstance();
+//        PyObject pyObject = py.getModule("model");
+//        PyObject result = pyObject.callAttr("extract_keywords", "Virupaksha Temple (ʋɪruːpaː'kʂɐ) is located in Hampi in the Vijayanagara district of Karnataka, India. It is part of the Group of Monuments at Hampi, designated as a UNESCO World Heritage Site. The temple is dedicated to Sri Virupaksha, a form of Shiva. The temple was built by Lakkan Dandesha, a nayaka (chieftain) under the ruler Deva Raya II also known as Prauda Deva Raya of the Vijayanagara Empire.[1]\n" +
+//                "\n" +
+//                "Hampi, capital of the Vijayanagara empire, sits on the banks of the Tungabhadra River (Pampa hole/Pampa river). Virupaksha Temple is the main center of pilgrimage (ತೀರ್ಥಯಾತ್ರೆ )at Hampi, and had been considered the most sacred sanctuary over the centuries. It is intact among the surrounding ruins and is still used in worship . The temple is dedicated to Lord Shiva, known here as Virupaksha/Pampa pathi, as the consort of the local goddess Pampadevi who is associated with the Tungabhadra River. There is also a Virupakshini Amma temple (mother goddess) in a village called Nalagamapalle, Chittoor district, Andhra Pradesh, approximately 100 km from Tirupati.", 5);
+//
+//        List<String> keywords = new ArrayList<>();
+//        for (PyObject obj : result.asList()) {
+//            keywords.add(obj.toJava(String.class));
+//        }
+//
+//        Log.d("MainActivity", "Top Keywords: " + keywords);
 
 //        Timer t = new Timer();
 //        //Set the schedule function and rate
@@ -121,6 +135,7 @@ public class ListenActivity extends AppCompatActivity {
         });
         //TTS button
         micBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 if (!textToSpeech.isSpeaking()) {
@@ -186,4 +201,8 @@ public class ListenActivity extends AppCompatActivity {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.cancel(1); // Cancels the notification with the specified ID (1 in this case)
     }
+
 }
+
+
+

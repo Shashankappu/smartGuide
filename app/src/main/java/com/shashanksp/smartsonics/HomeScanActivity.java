@@ -74,16 +74,20 @@ public class HomeScanActivity extends AppCompatActivity {
         scanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i;
-                if (isGuide) {
-                    i = new Intent(HomeScanActivity.this, EnterContentActivity.class);
-                } else {
-                    i = new Intent(HomeScanActivity.this, GuidelistActivity.class);
+                if(!artId.isEmpty()){
+                    Intent i;
+                    if (isGuide) {
+                        i = new Intent(HomeScanActivity.this, EnterContentActivity.class);
+                    } else {
+                        i = new Intent(HomeScanActivity.this, GuidelistActivity.class);
+                    }
+                    i.putExtra("guideId", guideId);
+                    i.putExtra("artId", artId);
+                    startActivity(i);
+                    finish();
+                } else{
+                    Toast.makeText(HomeScanActivity.this,"Could not find any QR Code",Toast.LENGTH_LONG).show();
                 }
-                i.putExtra("guideId", guideId);
-                i.putExtra("artId", artId);
-                startActivity(i);
-                finish();
             }
         });
 

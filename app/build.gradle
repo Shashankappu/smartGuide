@@ -1,7 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
-    id 'com.chaquo.python'
+    //id 'com.chaquo.python'
+
 }
 
 android {
@@ -16,21 +17,21 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        ndk{
-            abiFilters "armeabi-v7a", "arm64-v8a"
-        }
-        python {
-            version "3.11"
-
-        }
-        python{
-            buildPython "usr/bin/python3.11"
-        }
-        python{
-            pip{
-                install "scikit-learn"
-            }
-        }
+//        ndk{
+//            abiFilters "armeabi-v7a", "arm64-v8a"
+//        }
+//        python {
+//            version "3.11"
+//
+//        }
+//        python{
+//            buildPython "usr/bin/python3.11"
+//        }
+//        python{
+//            pip{
+//                install "scikit-learn"
+//            }
+//        }
     }
 
 
@@ -44,11 +45,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    sourceSets{
-        main{
-            python.srcDirs "src/main/python"
-        }
-    }
+//    sourceSets{
+//        main{
+//            python.srcDirs "src/main/python"
+//        }
+//    }
 
 }
 
@@ -68,8 +69,11 @@ dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:32.6.0')
     implementation 'com.google.firebase:firebase-analytics'
+    implementation 'org.jsoup:jsoup:1.15.3'
 
-    implementation 'org.scikit-learn:scikit-learn:0.24.2'
+
+//    implementation 'org.scikit-learn:scikit-learn:0.24.2'
+
 
 
 }
