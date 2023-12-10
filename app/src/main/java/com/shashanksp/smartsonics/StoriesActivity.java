@@ -39,7 +39,7 @@ public class StoriesActivity extends AppCompatActivity {
 
         // Load stories from Firebase
         loadStoriesFromFirebase();
-        Log.d("crashh", "stories loaded ");
+
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
