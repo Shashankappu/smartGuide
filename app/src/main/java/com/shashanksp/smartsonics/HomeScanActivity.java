@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -34,12 +35,14 @@ public class HomeScanActivity extends AppCompatActivity {
     private boolean isExpanded = false;
     private CodeScanner mCodeScanner;
     private String artId, guideId;
+    private String username;
     private boolean isGuide;
     TextView addstoryTV,viewstoryTV;
     FloatingActionButton viewstorybtn,addstorybtn;
     FloatingActionButton mainfabBtn;
     private static final String PREF_GUIDE_ID = "guideId";
     private static final String PREF_IS_GUIDE = "isGuide";
+    private static final String USER_EMAIL = "anonymous";
 
     private Animation fromBottomAnim;
     private Animation toBottomAnim;
@@ -55,7 +58,7 @@ public class HomeScanActivity extends AppCompatActivity {
 
         Button scanBtn = findViewById(R.id.scanBtn);
         ImageView logoutBtn = findViewById(R.id.logoutbtn);
-        rootlayout  =findViewById(R.id.root_layout);
+        rootlayout =findViewById(R.id.root_layout);
         rootlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +79,10 @@ public class HomeScanActivity extends AppCompatActivity {
 
         guideId = getIntent().getStringExtra("guideId");
         isGuide = getIntent().getBooleanExtra("isGuide",false);
+        username = getIntent().getStringExtra("username");
+        username = getusernameFromPrefs();
+        Log.d("crashh","username before sending"+username);
+
         // Get guideId and isGuide from SharedPreferences
 //        guideId = getGuideIdFromPrefs();
 //        isGuide = getIsGuideFromPrefs();
@@ -102,10 +109,12 @@ public class HomeScanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isExpanded){
                     Intent i = new Intent(HomeScanActivity.this,AddStoryActivity.class);
+                    i.putExtra("username",username);
                     startActivity(i);
                 }
             }
         });
+
         viewstorybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,8 +124,6 @@ public class HomeScanActivity extends AppCompatActivity {
                 }
             }
         });
-
-
 
 
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
@@ -241,6 +248,10 @@ public class HomeScanActivity extends AppCompatActivity {
     private String getGuideIdFromPrefs() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         return sharedPreferences.getString(PREF_GUIDE_ID, "");
+    }
+    private String getusernameFromPrefs() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        return sharedPreferences.getString(USER_EMAIL, "");
     }
 
     private void saveIsGuideToPrefs(boolean isGuide) {

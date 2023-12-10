@@ -32,6 +32,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String PREF_GUIDE_ID = "guideId";
     private static final String PREF_IS_GUIDE = "isGuide";
+    private static final String USER_EMAIL = "anonymous";
 
     @Override
     protected void onStart() {
@@ -138,6 +139,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                                 intent.putExtra("isGuide",false);
                                 saveIsGuideToPrefs(false);
                             }
+                            saveuseremailToPrefs(email);
+                            intent.putExtra("username",email);
                             startActivity(intent);
                             finish();
                         } else {
@@ -168,5 +171,11 @@ public class CreateAccountActivity extends AppCompatActivity {
     private String getGuideIdFromPrefs() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         return sharedPreferences.getString(PREF_GUIDE_ID, "");
+    }
+    private void saveuseremailToPrefs(String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(USER_EMAIL, email);
+        editor.apply();
     }
 }

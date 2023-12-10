@@ -71,7 +71,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'org.jsoup:jsoup:1.15.3'
 
-
 //    implementation 'org.scikit-learn:scikit-learn:0.24.2'
 
 

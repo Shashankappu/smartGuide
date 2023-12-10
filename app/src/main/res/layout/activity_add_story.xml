@@ -29,7 +29,7 @@
         android:layout_marginTop="24dp" />
 
     <EditText
-        android:id="@+id/Artname"
+        android:id="@+id/artnameEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -46,14 +46,14 @@
         android:padding="12dp" />
 
     <EditText
-        android:id="@+id/detailsEdt"
+        android:id="@+id/storiesEdt"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/custom_button_bg"
-        android:layout_below="@id/Artname"
-        android:hint="Enter your story here.."
+        android:layout_below="@id/artnameEdt"
+        android:hint="Share your experience here.."
         android:textColorHint="#888888"
         android:textColor="#FD0000"
         android:paddingEnd="10dp"
@@ -87,7 +87,7 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/submitBtn"
+            android:id="@+id/addBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

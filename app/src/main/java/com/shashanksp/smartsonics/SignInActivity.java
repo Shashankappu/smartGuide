@@ -32,6 +32,7 @@ public class SignInActivity extends AppCompatActivity {
     EditText pwdEdt;
     private static final String PREF_GUIDE_ID = "guideId";
     private static final String PREF_IS_GUIDE = "isGuide";
+    private static final String USER_EMAIL = "anonymous";
     @Override
     protected void onStart() {
         super.onStart();
@@ -96,7 +97,7 @@ public class SignInActivity extends AppCompatActivity {
                 switch (index) {
                     case 0: // first button
                         guideIDEdt.setVisibility(View.VISIBLE);
-                        isGuide= true;
+                        isGuide = true;
                         break;
                     case 1: // secondbutton
                         guideIDEdt.setVisibility(View.GONE);
@@ -121,17 +122,20 @@ public class SignInActivity extends AppCompatActivity {
                             SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean("isLoggedIn", true);
-
+                            //sending data to other actvity
                             Intent intent = new Intent(SignInActivity.this, HomeScanActivity.class);
                             if(isGuide){
                                 intent.putExtra("isGuide",true);
                                 intent.putExtra("guideId",guideIDEdt.getText().toString());
                                 saveGuideIdToPrefs(guideIDEdt.getText().toString());
                                 saveIsGuideToPrefs(isGuide);
+
                             }else {
                                 intent.putExtra("isGuide", false);
                                 saveIsGuideToPrefs(false);
                             }
+                            saveuseremailToPrefs(email);
+                            intent.putExtra("username",email);
                             editor.apply();
                             startActivity(intent);
                             finish();
@@ -164,6 +168,12 @@ public class SignInActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(PREF_IS_GUIDE, isGuide);
+        editor.apply();
+    }
+    private void saveuseremailToPrefs(String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(USER_EMAIL, email);
         editor.apply();
     }
 }
