@@ -81,7 +81,6 @@ public class HomeScanActivity extends AppCompatActivity {
         isGuide = getIntent().getBooleanExtra("isGuide",false);
         username = getIntent().getStringExtra("username");
         username = getusernameFromPrefs();
-        Log.d("crashh","username before sending"+username);
 
         // Get guideId and isGuide from SharedPreferences
 //        guideId = getGuideIdFromPrefs();

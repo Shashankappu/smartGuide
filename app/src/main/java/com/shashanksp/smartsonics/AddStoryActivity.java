@@ -31,7 +31,6 @@ public class AddStoryActivity extends AppCompatActivity {
         addBtn = findViewById(R.id.addBtn);
         clearBtn = findViewById(R.id.clearBtn);
         username = getIntent().getStringExtra("username");
-        Log.d("crashh", "username reference: " + username);
         username = extractUsername(username);
         databaseReference = FirebaseDatabase.getInstance().getReference("stories");
 
@@ -98,17 +97,7 @@ public class AddStoryActivity extends AppCompatActivity {
         }
         return username;
     }
-    private static class Story {
-        public String username;
-        public String artName;
-        public String storyText;
 
-        public Story(String username, String artName, String storyText) {
-            this.username = username;
-            this.artName = artName;
-            this.storyText = storyText;
-        }
-    }
     // Generate a unique key using timestamp
     private String generateUniqueId() {
         return String.valueOf(System.currentTimeMillis());
