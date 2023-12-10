@@ -16,16 +16,18 @@
         android:backgroundTint="@color/white"
         android:src="@drawable/home"
         app:tint="@color/black" />
+
     <TextView
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add your Story"
-        android:textSize="32sp"
+        android:text="Add your story"
+        android:textSize="28sp"
         android:textColor="#000000"
-        android:textStyle="bold"
+        android:textStyle="italic"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp" />
+
     <EditText
         android:id="@+id/Artname"
         android:layout_width="match_parent"
@@ -42,6 +44,7 @@
         android:paddingEnd="10dp"
         android:longClickable="false"
         android:padding="12dp" />
+
     <EditText
         android:id="@+id/detailsEdt"
         android:layout_width="match_parent"
@@ -52,7 +55,7 @@
         android:layout_below="@id/Artname"
         android:hint="Enter your story here.."
         android:textColorHint="#888888"
-        android:textColor="#000000"
+        android:textColor="#FD0000"
         android:paddingEnd="10dp"
         android:longClickable="false"
         android:padding="12dp"
@@ -66,6 +69,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="12dp"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -73,11 +77,11 @@
             android:id="@+id/clearBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
             android:layout_weight="1"
             android:background="@drawable/custom_button_bg"
             android:text="Clear"
             android:layout_marginEnd="4dp"
+            android:elevation="10dp"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -90,8 +94,10 @@
             android:background="@drawable/custom_button_bg"
             android:backgroundTint="@color/black"
             android:text="Add"
+            android:elevation="15dp"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
     </LinearLayout>
+
 </RelativeLayout>
