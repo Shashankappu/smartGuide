@@ -150,7 +150,7 @@ public class HomeScanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!artId.isEmpty()){
                     Intent i;
-                    if (isGuide) {
+                    if (getIsGuideFromPrefs()) {
                         i = new Intent(HomeScanActivity.this, EnterContentActivity.class);
                     } else {
                         i = new Intent(HomeScanActivity.this, GuidelistActivity.class);
@@ -161,6 +161,9 @@ public class HomeScanActivity extends AppCompatActivity {
                     finish();
                 } else{
                     Toast.makeText(HomeScanActivity.this,"Could not find any QR Code",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(HomeScanActivity.this, HomeScanActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });

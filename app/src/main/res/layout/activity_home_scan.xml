@@ -15,14 +15,18 @@
         android:textSize="28sp"
         android:textColor="#000000"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="20dp" />
+
     <ImageView
         android:id="@+id/logoutbtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_margin="30dp"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/logout"/>
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/logout" />
 
     <com.budiyev.android.codescanner.CodeScannerView
         android:id="@+id/scanner_view"
@@ -44,7 +48,10 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/custom_button_bg"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
         android:padding="10dp"
+        android:elevation="12dp"
         android:text="Scan" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,7 +60,7 @@
         android:minHeight="32dp"
         android:layout_marginBottom="12dp"
         android:layout_marginEnd="12dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

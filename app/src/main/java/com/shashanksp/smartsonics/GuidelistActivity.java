@@ -67,6 +67,9 @@ public class GuidelistActivity extends AppCompatActivity implements GuideAdapter
                     guideAdapter.notifyDataSetChanged();
                 } else {
                     Log.d("GuidelistActivity", "No guides found for artId: " + artId);
+                    Toast.makeText(GuidelistActivity.this,"No Data Available for this Art",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(GuidelistActivity.this,HomeScanActivity.class));
+                    finish();
                 }
             }
 
@@ -74,6 +77,10 @@ public class GuidelistActivity extends AppCompatActivity implements GuideAdapter
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle errors, if any
                 Log.e("GuidelistActivity", "Error fetching guide IDs: " + databaseError.getMessage());
+                Toast.makeText(GuidelistActivity.this,"Error fetching Data for this Art",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(GuidelistActivity.this,HomeScanActivity.class));
+                finish();
+
             }
         });
     }
