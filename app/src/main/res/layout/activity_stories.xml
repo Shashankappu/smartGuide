@@ -40,6 +40,7 @@
        android:divider="@android:color/transparent"
        android:dividerHeight="3dp"
        android:paddingHorizontal="10dp"
+       android:scrollbarStyle="outsideInset"
        tools:listitem="@layout/stories_item" />
 
 
