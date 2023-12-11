@@ -2,7 +2,6 @@ package com.shashanksp.smartsonics;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -15,7 +14,7 @@ public class SplashActivity extends AppCompatActivity {
         Thread timerThread = new Thread() {
             public void run() {
                 try {
-                    sleep(1000);//splash time
+                    sleep(1500);//splash time
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
