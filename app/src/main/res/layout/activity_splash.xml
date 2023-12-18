@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     tools:context=".SplashActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Smart Audio guide"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
@@ -14,5 +24,16 @@
         app:lottie_autoPlay="true"
         android:layout_centerInParent="true"
         app:lottie_loop="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
