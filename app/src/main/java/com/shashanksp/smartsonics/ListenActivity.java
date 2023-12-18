@@ -35,9 +35,6 @@ public class ListenActivity extends AppCompatActivity implements LoaderManager.L
     Button backtoscanBtn;
     ImageButton micBtn;
     TextView timerTV;
-    public int seconds = 5;
-    public int minutes = 0;
-
     String artId, details;
     TextView resultTV, titleTV;
     TextToSpeech textToSpeech;
@@ -194,7 +191,6 @@ public class ListenActivity extends AppCompatActivity implements LoaderManager.L
             this.apiKey = apiKey;
             this.topicId = topicId;
             Log.d("YouTubeApiLoader", "api loader constructor init");
-
         }
         @Override
         protected void onStartLoading() {

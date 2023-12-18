@@ -40,9 +40,7 @@ public class SignInActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         guideId = getIntent().getStringExtra("guideId");
         isGuide = getIntent().getBooleanExtra("isGuide", false);
-        // Save guideId and isGuide to SharedPreferences
-//        guideId = getGuideIdFromPrefs();
-//        isGuide = getIsGuideFromPrefs();
+
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
         if (isLoggedIn) {
             // User is logged in, start the HomeActivity and finish LoginActivity
@@ -66,6 +64,8 @@ public class SignInActivity extends AppCompatActivity {
         guideIDEdt = findViewById(R.id.GuideID_edt);
         emailEdt = findViewById(R.id.email_edittext);
         pwdEdt = findViewById(R.id.password_edittext);
+
+
         mAuth = FirebaseAuth.getInstance();
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +135,7 @@ public class SignInActivity extends AppCompatActivity {
                                 saveIsGuideToPrefs(false);
                             }
                             saveuseremailToPrefs(email);
-                            intent.putExtra("username",email);
+                            intent.putExtra("useremail",email);
                             editor.apply();
                             startActivity(intent);
                             finish();
@@ -155,15 +155,6 @@ public class SignInActivity extends AppCompatActivity {
         editor.putString(PREF_GUIDE_ID, guideId);
         editor.apply();
     }
-    private String getGuideIdFromPrefs() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        return sharedPreferences.getString(PREF_GUIDE_ID, "");
-    }
-    private boolean getIsGuideFromPrefs() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(PREF_IS_GUIDE, false);
-    }
-
     private void saveIsGuideToPrefs(boolean isGuide) {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -176,4 +167,5 @@ public class SignInActivity extends AppCompatActivity {
         editor.putString(USER_EMAIL, email);
         editor.apply();
     }
+
 }

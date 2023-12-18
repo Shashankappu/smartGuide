@@ -24,7 +24,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     Button registerbtn;
     TextView signinbtn;
     EditText guideIDEdt;
-    EditText emailEdt;
+    EditText emailEdt,usernameEdt;
     EditText pwdEdt;
     EditText cnfpwdEdt;
     boolean isGuide;
@@ -33,6 +33,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private static final String PREF_GUIDE_ID = "guideId";
     private static final String PREF_IS_GUIDE = "isGuide";
     private static final String USER_EMAIL = "anonymous";
+    private static final String USERNAME = "anonymous user";
 
     @Override
     protected void onStart() {
@@ -65,6 +66,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         signinbtn = findViewById(R.id.Signin_txtbtn);
         guideIDEdt = findViewById(R.id.GuideID_edt);
         emailEdt = findViewById(R.id.email_edittext);
+        usernameEdt = findViewById(R.id.username_edittext);
         pwdEdt = findViewById(R.id.password_edittext);
         cnfpwdEdt= findViewById(R.id.confirmpassword_text);
         mAuth = FirebaseAuth.getInstance();
@@ -72,9 +74,10 @@ public class CreateAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 validatePassword(pwdEdt.getText().toString(),cnfpwdEdt.getText().toString());
-                if(emailEdt.getText().toString().isEmpty()) {
-                    Toast.makeText(CreateAccountActivity.this,"Invalid Email or Password",Toast.LENGTH_LONG).show();
+                if(emailEdt.getText().toString().isEmpty()  && usernameEdt.getText().toString().isEmpty()) {
+                    Toast.makeText(CreateAccountActivity.this,"Invalid Email or username",Toast.LENGTH_LONG).show();
                 }else{
+                    saveUsernameToPrefs(usernameEdt.getText().toString());
                     Register(emailEdt.getText().toString(), pwdEdt.getText().toString());
                 }
             }
@@ -139,8 +142,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                                 intent.putExtra("isGuide",false);
                                 saveIsGuideToPrefs(false);
                             }
-                            saveuseremailToPrefs(email);
-                            intent.putExtra("username",email);
+                            saveUseremailToPrefs(email);
+                            intent.putExtra("useremail",email);
                             startActivity(intent);
                             finish();
                         } else {
@@ -164,18 +167,17 @@ public class CreateAccountActivity extends AppCompatActivity {
         editor.putBoolean(PREF_IS_GUIDE, isGuide);
         editor.apply();
     }
-    private boolean getIsGuideFromPrefs() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(PREF_IS_GUIDE, false);
-    }
-    private String getGuideIdFromPrefs() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        return sharedPreferences.getString(PREF_GUIDE_ID, "");
-    }
-    private void saveuseremailToPrefs(String email) {
+
+    private void saveUseremailToPrefs(String email) {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USER_EMAIL, email);
+        editor.apply();
+    }
+    private void saveUsernameToPrefs(String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(USERNAME, email);
         editor.apply();
     }
 }

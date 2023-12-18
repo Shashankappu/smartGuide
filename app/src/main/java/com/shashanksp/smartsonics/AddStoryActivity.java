@@ -1,9 +1,11 @@
 package com.shashanksp.smartsonics;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +20,7 @@ public class AddStoryActivity extends AppCompatActivity {
     EditText storiesEdt,artnameEdt;
     Button addBtn,clearBtn;
     String username;
+    private static final String USERNAME = "anonymous user";
 
     private DatabaseReference databaseReference;
     @Override
@@ -30,8 +33,7 @@ public class AddStoryActivity extends AppCompatActivity {
         artnameEdt = findViewById(R.id.artnameEdt);
         addBtn = findViewById(R.id.addBtn);
         clearBtn = findViewById(R.id.clearBtn);
-        username = getIntent().getStringExtra("username");
-        username = extractUsername(username);
+        username = getUsernameFromPrefs();
         databaseReference = FirebaseDatabase.getInstance().getReference("stories");
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
@@ -90,16 +92,13 @@ public class AddStoryActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
-    private String extractUsername(String username) {
-        int atIndex = username.indexOf('@');
-        if (atIndex != -1) {
-            return username.substring(0, atIndex);
-        }
-        return username;
-    }
 
     // Generate a unique key using timestamp
     private String generateUniqueId() {
         return String.valueOf(System.currentTimeMillis());
+    }
+    private String getUsernameFromPrefs() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        return sharedPreferences.getString(USERNAME,"anonymous user");
     }
 }

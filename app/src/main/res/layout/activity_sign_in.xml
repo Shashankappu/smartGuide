@@ -7,7 +7,7 @@
     tools:context=".SignInActivity">
 
     <TextView
-        android:id="@+id/title_text2"
+        android:id="@+id/welcomeTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -20,7 +20,7 @@
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title_text2"
+        android:layout_below="@id/welcomeTxt"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:text="Sign In"

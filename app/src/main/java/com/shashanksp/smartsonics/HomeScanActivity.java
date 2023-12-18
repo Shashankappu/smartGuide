@@ -34,7 +34,7 @@ public class HomeScanActivity extends AppCompatActivity {
     private boolean isExpanded = false;
     private CodeScanner mCodeScanner;
     private String artId, guideId;
-    private String username;
+    private String useremail;
     private boolean isGuide;
     TextView addstoryTV,viewstoryTV;
     FloatingActionButton viewstorybtn,addstorybtn;
@@ -42,6 +42,7 @@ public class HomeScanActivity extends AppCompatActivity {
     private static final String PREF_GUIDE_ID = "guideId";
     private static final String PREF_IS_GUIDE = "isGuide";
     private static final String USER_EMAIL = "anonymous";
+    private static final String USERNAME = "anonymous user";
 
     private Animation fromBottomAnim;
     private Animation toBottomAnim;
@@ -78,12 +79,8 @@ public class HomeScanActivity extends AppCompatActivity {
 
         guideId = getIntent().getStringExtra("guideId");
         isGuide = getIntent().getBooleanExtra("isGuide",false);
-        username = getIntent().getStringExtra("username");
-        username = getusernameFromPrefs();
-
-        // Get guideId and isGuide from SharedPreferences
-//        guideId = getGuideIdFromPrefs();
-//        isGuide = getIsGuideFromPrefs();
+        useremail = getIntent().getStringExtra("useremail");
+        useremail = getuseremailFromPrefs();
 
         // Lazily initialize animation variables
         fromBottomAnim = getAnimation(R.anim.from_bottom_fab);
@@ -107,7 +104,7 @@ public class HomeScanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isExpanded){
                     Intent i = new Intent(HomeScanActivity.this,AddStoryActivity.class);
-                    i.putExtra("username",username);
+                    i.putExtra("useremail",useremail);
                     startActivity(i);
                 }
             }
@@ -250,7 +247,7 @@ public class HomeScanActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         return sharedPreferences.getString(PREF_GUIDE_ID, "");
     }
-    private String getusernameFromPrefs() {
+    private String getuseremailFromPrefs() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         return sharedPreferences.getString(USER_EMAIL, "");
     }
