@@ -172,10 +172,7 @@ public class ListenActivity extends AppCompatActivity implements LoaderManager.L
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
         // Your existing code here
         if (data != null) {
-            Toast.makeText(ListenActivity.this, "Video ID: " + data, Toast.LENGTH_SHORT).show();
-            titleTV.setText(data);
             startVideo(data);
-            Log.d("YouTubeApiLoader",data);
         } else {
             Toast.makeText(ListenActivity.this, "Error extracting video ID.", Toast.LENGTH_SHORT).show();
         }
@@ -209,7 +206,7 @@ public class ListenActivity extends AppCompatActivity implements LoaderManager.L
         public String loadInBackground() {
             try {
                 Log.d("YouTubeApiLoader", "api loader constructor init");
-                return YouTubeApiUtil.searchVideosByTopicId(apiKey, topicId);
+                return YouTubeApiUtil.searchVideosByQuery(apiKey, topicId);
             } catch (IOException e) {
                 Log.e("YouTubeApiLoader", "Error in loadInBackground", e);
                 e.printStackTrace();

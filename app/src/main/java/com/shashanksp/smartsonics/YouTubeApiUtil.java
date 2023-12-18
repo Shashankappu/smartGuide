@@ -20,12 +20,12 @@ public class YouTubeApiUtil {
     private static final String BASE_URL = "https://youtube.googleapis.com/youtube/v3/search";
 
 
-    public static String searchVideosByTopicId(String apiKey, String topicId) throws IOException {
+    public static String searchVideosByQuery(String apiKey, String query) throws IOException {
         HttpUrl.Builder urlBuilder = Objects.requireNonNull(HttpUrl.parse(BASE_URL)).newBuilder();
-        urlBuilder.addQueryParameter("topicId", topicId);
+        urlBuilder.addQueryParameter("q", query); // Change from 'topicId' to 'q'
         urlBuilder.addQueryParameter("key", apiKey);
 
-        Log.d("YouTubeApiLoader", "Load in background started... and is in searchVideosByTopicId ");
+        Log.d("YouTubeApiLoader", "Load in background started... and is in searchVideosByQuery ");
         Request request = new Request.Builder()
                 .url(urlBuilder.build())
                 .build();
@@ -43,6 +43,7 @@ public class YouTubeApiUtil {
         }
     }
 
+
     private static String extractVideoId(String responseData) {
         Log.d("YouTubeApiLoader", "extracting videoId");
         try {
@@ -51,11 +52,13 @@ public class YouTubeApiUtil {
             JsonArray itemsArray = jsonObject.getAsJsonArray("items");
 
             if (itemsArray != null && itemsArray.size() > 0) {
-                JsonObject firstItem = itemsArray.get(0).getAsJsonObject();
-                JsonObject idObject = firstItem.getAsJsonObject("id");
+                for (int i = 0; i < itemsArray.size(); i++) {
+                    JsonObject currentItem = itemsArray.get(i).getAsJsonObject();
+                    JsonObject idObject = currentItem.getAsJsonObject("id");
 
-                if (idObject != null && idObject.has("videoId")) {
-                    return idObject.get("videoId").getAsString();
+                    if (idObject != null && idObject.has("videoId")) {
+                        return idObject.get("videoId").getAsString();
+                    }
                 }
             }
 
