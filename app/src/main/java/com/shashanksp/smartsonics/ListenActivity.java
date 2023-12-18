@@ -3,6 +3,7 @@ package com.shashanksp.smartsonics;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -17,22 +18,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.Loader;
+
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
+
+import java.io.IOException;
 
 
-import org.json.JSONObject;
-import org.json.JSONTokener;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class ListenActivity extends AppCompatActivity {
+public class ListenActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
     Button backtoscanBtn;
     ImageButton micBtn;
     TextView timerTV;
@@ -42,6 +45,11 @@ public class ListenActivity extends AppCompatActivity {
     String artId,details;
     TextView resultTV,titleTV;
     TextToSpeech textToSpeech;
+    YouTubePlayerView ytvideo;
+    private static final String API_KEY = "AIzaSyCA-L8jfpKHynjIkqK2lA5s6prB0gb9A0w";
+    private static final int LOADER_ID = 1;
+    String videoId = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +59,8 @@ public class ListenActivity extends AppCompatActivity {
         resultTV = findViewById(R.id.res_text);
         titleTV = findViewById(R.id.title_text);
         micBtn = findViewById(R.id.mic_btn);
+        ytvideo = findViewById(R.id.ytvideo);
+
 
         artId = getIntent().getStringExtra("artId");
         details = getIntent().getStringExtra("details");
@@ -58,6 +68,9 @@ public class ListenActivity extends AppCompatActivity {
         resultTV.setText(details);
 
 
+        Log.d("YouTubeApiLoader", "loader init"+ videoId+" this");
+        LoaderManager.getInstance(this).initLoader(LOADER_ID, null, ListenActivity.this);
+        Log.d("YouTubeApiLoader", "loader init done"+ videoId +" this");
 
         backtoscanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,58 +80,6 @@ public class ListenActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
-
-
-
-
-//        if (!Python.isStarted()) {
-//            Python.start(new AndroidPlatform(this));
-//        }
-//
-//        // Call the Python function
-//        Python py = Python.getInstance();
-//        PyObject pyObject = py.getModule("model");
-//        PyObject result = pyObject.callAttr("extract_keywords", "Virupaksha Temple (ʋɪruːpaː'kʂɐ) is located in Hampi in the Vijayanagara district of Karnataka, India. It is part of the Group of Monuments at Hampi, designated as a UNESCO World Heritage Site. The temple is dedicated to Sri Virupaksha, a form of Shiva. The temple was built by Lakkan Dandesha, a nayaka (chieftain) under the ruler Deva Raya II also known as Prauda Deva Raya of the Vijayanagara Empire.[1]\n" +
-//                "\n" +
-//                "Hampi, capital of the Vijayanagara empire, sits on the banks of the Tungabhadra River (Pampa hole/Pampa river). Virupaksha Temple is the main center of pilgrimage (ತೀರ್ಥಯಾತ್ರೆ )at Hampi, and had been considered the most sacred sanctuary over the centuries. It is intact among the surrounding ruins and is still used in worship . The temple is dedicated to Lord Shiva, known here as Virupaksha/Pampa pathi, as the consort of the local goddess Pampadevi who is associated with the Tungabhadra River. There is also a Virupakshini Amma temple (mother goddess) in a village called Nalagamapalle, Chittoor district, Andhra Pradesh, approximately 100 km from Tirupati.", 5);
-//
-//        List<String> keywords = new ArrayList<>();
-//        for (PyObject obj : result.asList()) {
-//            keywords.add(obj.toJava(String.class));
-//        }
-//
-//        Log.d("MainActivity", "Top Keywords: " + keywords);
-
-//        Timer t = new Timer();
-//        //Set the schedule function and rate
-//        t.scheduleAtFixedRate(new TimerTask() {
-//            @Override
-//            public void run() {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        if(minutes<0){
-//                            timerTV.setText("Time up");
-//                            t.cancel();
-//                        } else{
-//                            timerTV.setText(String.valueOf(minutes)+":"+String.valueOf(seconds)+" mins left");
-//                            seconds -= 1;
-//
-//                            if(seconds == 0) {
-//                                timerTV.setText(String.valueOf(minutes)+":"+String.valueOf(seconds)+" mins left");
-//                                seconds=60;
-//                                minutes=minutes-1;
-//                            }
-//                        }
-//
-//                    }
-//                });
-//            }
-//
-//        }, 0, 1000);
 
         //TTS
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
@@ -150,7 +111,19 @@ public class ListenActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        getLifecycle().addObserver(ytvideo);
+        ytvideo.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                String videoId = "ZYXwVtbo8Zc";
+                youTubePlayer.loadVideo(videoId, 0);
+            }
+        });
+
     }
+
     private void convertTextToSpeech(String text) {
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
     }
@@ -202,7 +175,66 @@ public class ListenActivity extends AppCompatActivity {
         notificationManager.cancel(1); // Cancels the notification with the specified ID (1 in this case)
     }
 
+    @NonNull
+    @Override
+    public Loader<String> onCreateLoader(int id, Bundle args) {
+        return new YouTubeApiLoader(this, API_KEY, "baby");
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<String> loader, String data) {
+        Log.d("YouTubeApiLoader", "onLoadFinished started...");
+        // Your existing code here
+        if (data != null) {
+            Log.d("YouTubeApiLoader", "Video ID: " + data);
+            Toast.makeText(ListenActivity.this, "Video ID: " + data, Toast.LENGTH_SHORT).show();
+
+        } else {
+            Log.e("YouTubeApiLoader", "Video ID: NullIIDD ");
+            Toast.makeText(ListenActivity.this, "Error extracting video ID.", Toast.LENGTH_SHORT).show();
+        }
+        Log.d("YouTubeApiLoader", "onLoadFinished completed.");
+
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<String> loader) {
+        // Handle loader reset if needed
+        Log.d("YouTubeApiLoader", "onLoaderReset started...");
+        // Handle loader reset if needed
+        Log.d("videoid", "loaderreset");
+        Log.d("YouTubeApiLoader", "onLoaderReset completed.");
+    }
+
+    public static class YouTubeApiLoader extends AsyncTaskLoader<String> {
+
+        private final String apiKey;
+        private final String topicId;
+
+        public YouTubeApiLoader(Context context, String apiKey, String topicId) {
+            super(context);
+            this.apiKey = apiKey;
+            this.topicId = topicId;
+        }
+
+        @Override
+        public String loadInBackground() {
+            try {
+                Log.d("YouTubeApiLoader", "Load in background started...");
+                // Your existing code here
+                return YouTubeApiUtil.searchVideosByTopicId(apiKey, topicId);
+            } catch (IOException e) {
+                Log.e("YouTubeApiLoader", "Error in loadInBackground", e);
+                e.printStackTrace();
+                return null;
+            } finally {
+                Log.d("YouTubeApiLoader", "Load in background completed.");
+            }
+        }
+    }
 }
+
+
 
 
 

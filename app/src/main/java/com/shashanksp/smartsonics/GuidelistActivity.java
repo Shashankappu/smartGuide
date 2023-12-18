@@ -105,9 +105,9 @@ public class GuidelistActivity extends AppCompatActivity implements GuideAdapter
                     i.putExtra("details",details);
                     i.putExtra("artId",artId);
                     startActivity(i);
-                    Toast.makeText(GuidelistActivity.this, "Details for Guide " + guideId + ": " + details, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(GuidelistActivity.this, "Details for Guide " + guideId + ": " + details, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(GuidelistActivity.this, "Details for Guide" + guideId + "do not exist.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(GuidelistActivity.this, "Details for Guide" + guideId + "do not exist.", Toast.LENGTH_SHORT).show();
                 }
             }
 

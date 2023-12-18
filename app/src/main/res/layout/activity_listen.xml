@@ -21,8 +21,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp" />
 
-        <VideoView
-            android:id="@+id/ganvideo"
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/ytvideo"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_below="@id/title_text"
@@ -35,9 +35,10 @@
             android:id="@+id/timerTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ganvideo"
+            android:layout_below="@id/ytvideo"
             android:layout_alignParentRight="true"
             android:textSize="18sp"
+            android:visibility="invisible"
             android:textColor="@color/black"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"

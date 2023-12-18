@@ -56,7 +56,7 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.firebase:firebase-auth:22.3.0'
     implementation 'com.google.firebase:firebase-database:20.3.0'
@@ -72,6 +72,16 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.15.3'
 
 //    implementation 'org.scikit-learn:scikit-learn:0.24.2'
+
+
+
+    //https request
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.google.code.gson:gson:2.10'
+
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28'
+
+
 
 
 
