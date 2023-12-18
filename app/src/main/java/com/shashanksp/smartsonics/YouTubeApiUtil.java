@@ -25,6 +25,7 @@ public class YouTubeApiUtil {
         urlBuilder.addQueryParameter("topicId", topicId);
         urlBuilder.addQueryParameter("key", apiKey);
 
+        Log.d("YouTubeApiLoader", "Load in background started... and is in searchVideosByTopicId ");
         Request request = new Request.Builder()
                 .url(urlBuilder.build())
                 .build();
@@ -37,11 +38,13 @@ public class YouTubeApiUtil {
             String responseData = response.body().string();
             return extractVideoId(responseData);
         } else {
+            Log.d("YouTubeApiLoader", "error in extracting ");
             throw new IOException("Error: " + response.code() + " " + response.message());
         }
     }
 
     private static String extractVideoId(String responseData) {
+        Log.d("YouTubeApiLoader", "extracting videoId");
         try {
             Gson gson = new Gson();
             JsonObject jsonObject = gson.fromJson(responseData, JsonObject.class);

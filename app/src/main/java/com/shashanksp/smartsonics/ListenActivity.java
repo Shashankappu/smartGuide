@@ -1,6 +1,5 @@
 package com.shashanksp.smartsonics;
 
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -11,14 +10,12 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
-
+import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -34,21 +31,20 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 import java.io.IOException;
 
-
 public class ListenActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
     Button backtoscanBtn;
     ImageButton micBtn;
     TextView timerTV;
     public int seconds = 5;
-    public int minutes =0;
+    public int minutes = 0;
 
-    String artId,details;
-    TextView resultTV,titleTV;
+    String artId, details;
+    TextView resultTV, titleTV;
     TextToSpeech textToSpeech;
     YouTubePlayerView ytvideo;
     private static final String API_KEY = "AIzaSyCA-L8jfpKHynjIkqK2lA5s6prB0gb9A0w";
     private static final int LOADER_ID = 1;
-    String videoId = "";
+    String videoId = "ZYXwVtbo8Zc";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,27 +57,24 @@ public class ListenActivity extends AppCompatActivity implements LoaderManager.L
         micBtn = findViewById(R.id.mic_btn);
         ytvideo = findViewById(R.id.ytvideo);
 
-
         artId = getIntent().getStringExtra("artId");
         details = getIntent().getStringExtra("details");
         titleTV.setText(artId);
         resultTV.setText(details);
 
-
-        Log.d("YouTubeApiLoader", "loader init"+ videoId+" this");
-        LoaderManager.getInstance(this).initLoader(LOADER_ID, null, ListenActivity.this);
-        Log.d("YouTubeApiLoader", "loader init done"+ videoId +" this");
+        Log.d("YouTubeApiLoader", "loader init" + videoId + " this");
+        LoaderManager.getInstance(ListenActivity.this).initLoader(LOADER_ID, null, ListenActivity.this);
 
         backtoscanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ListenActivity.this,HomeScanActivity.class);
+                Intent i = new Intent(ListenActivity.this, HomeScanActivity.class);
                 startActivity(i);
                 finish();
             }
         });
 
-        //TTS
+        // TTS
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -90,13 +83,13 @@ public class ListenActivity extends AppCompatActivity implements LoaderManager.L
                     textToSpeech.setSpeechRate(0.8F);
                 } else {
                     // TTS initialization failed
-                    Toast.makeText(ListenActivity.this,"TTS Initialization Failed!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ListenActivity.this, "TTS Initialization Failed!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        //TTS button
-        micBtn.setOnClickListener(new View.OnClickListener() {
 
+        // TTS button
+        micBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!textToSpeech.isSpeaking()) {
@@ -112,15 +105,7 @@ public class ListenActivity extends AppCompatActivity implements LoaderManager.L
             }
         });
 
-
         getLifecycle().addObserver(ytvideo);
-        ytvideo.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-            @Override
-            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String videoId = "ZYXwVtbo8Zc";
-                youTubePlayer.loadVideo(videoId, 0);
-            }
-        });
 
     }
 
@@ -170,6 +155,7 @@ public class ListenActivity extends AppCompatActivity implements LoaderManager.L
             notificationManagerCompat.notify(1, builder.build());
         }
     }
+
     private void hideTTSNotification() {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.cancel(1); // Cancels the notification with the specified ID (1 in this case)
@@ -178,32 +164,26 @@ public class ListenActivity extends AppCompatActivity implements LoaderManager.L
     @NonNull
     @Override
     public Loader<String> onCreateLoader(int id, Bundle args) {
-        return new YouTubeApiLoader(this, API_KEY, "baby");
+        Log.d("YouTubeApiLoader", "oncreate loader" + videoId + " this");
+        return new YouTubeApiLoader(this, API_KEY, artId);
     }
 
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-        Log.d("YouTubeApiLoader", "onLoadFinished started...");
         // Your existing code here
         if (data != null) {
-            Log.d("YouTubeApiLoader", "Video ID: " + data);
             Toast.makeText(ListenActivity.this, "Video ID: " + data, Toast.LENGTH_SHORT).show();
-
+            titleTV.setText(data);
+            startVideo(data);
+            Log.d("YouTubeApiLoader",data);
         } else {
-            Log.e("YouTubeApiLoader", "Video ID: NullIIDD ");
             Toast.makeText(ListenActivity.this, "Error extracting video ID.", Toast.LENGTH_SHORT).show();
         }
-        Log.d("YouTubeApiLoader", "onLoadFinished completed.");
-
     }
 
     @Override
     public void onLoaderReset(@NonNull Loader<String> loader) {
         // Handle loader reset if needed
-        Log.d("YouTubeApiLoader", "onLoaderReset started...");
-        // Handle loader reset if needed
-        Log.d("videoid", "loaderreset");
-        Log.d("YouTubeApiLoader", "onLoaderReset completed.");
     }
 
     public static class YouTubeApiLoader extends AsyncTaskLoader<String> {
@@ -211,17 +191,24 @@ public class ListenActivity extends AppCompatActivity implements LoaderManager.L
         private final String apiKey;
         private final String topicId;
 
+
         public YouTubeApiLoader(Context context, String apiKey, String topicId) {
             super(context);
             this.apiKey = apiKey;
             this.topicId = topicId;
+            Log.d("YouTubeApiLoader", "api loader constructor init");
+
         }
+        @Override
+        protected void onStartLoading() {
+            forceLoad();
+        }
+
 
         @Override
         public String loadInBackground() {
             try {
-                Log.d("YouTubeApiLoader", "Load in background started...");
-                // Your existing code here
+                Log.d("YouTubeApiLoader", "api loader constructor init");
                 return YouTubeApiUtil.searchVideosByTopicId(apiKey, topicId);
             } catch (IOException e) {
                 Log.e("YouTubeApiLoader", "Error in loadInBackground", e);
@@ -232,7 +219,16 @@ public class ListenActivity extends AppCompatActivity implements LoaderManager.L
             }
         }
     }
+    private void startVideo(String videoId){
+        ytvideo.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                youTubePlayer.loadVideo(videoId, 0);
+            }
+        });
+    }
 }
+
 
 
 
