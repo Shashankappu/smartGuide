@@ -74,12 +74,33 @@ public class CreateAccountActivity extends AppCompatActivity {
         registerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validatePassword(pwdEdt.getText().toString(),cnfpwdEdt.getText().toString());
-                if(emailEdt.getText().toString().isEmpty()  && usernameEdt.getText().toString().isEmpty()) {
-                    Toast.makeText(CreateAccountActivity.this,"Invalid Email or username",Toast.LENGTH_LONG).show();
-                }else{
-                    saveUsernameToPrefs(usernameEdt.getText().toString());
-                    Register(emailEdt.getText().toString(), pwdEdt.getText().toString());
+                if (isGuide) {
+                    if (validateGuideId(guideIDEdt.getText().toString().trim())) {
+                        if (validatePassword(pwdEdt.getText().toString(), cnfpwdEdt.getText().toString())) {
+                            if (emailEdt.getText().toString().isEmpty() && usernameEdt.getText().toString().isEmpty()) {
+                                Toast.makeText(CreateAccountActivity.this, "Invalid Email or username", Toast.LENGTH_LONG).show();
+                            } else {
+                                saveUsernameToPrefs(usernameEdt.getText().toString());
+                                Register(emailEdt.getText().toString(), pwdEdt.getText().toString());
+                            }
+                        }else{
+                            Toast.makeText(CreateAccountActivity.this, "password does not match", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(CreateAccountActivity.this, "Invalid Guide Id", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    if (validatePassword(pwdEdt.getText().toString(), cnfpwdEdt.getText().toString())) {
+                        if (emailEdt.getText().toString().isEmpty() && usernameEdt.getText().toString().isEmpty()) {
+                            Toast.makeText(CreateAccountActivity.this, "Invalid Email or username", Toast.LENGTH_LONG).show();
+                        } else {
+                            saveUsernameToPrefs(usernameEdt.getText().toString());
+                            Register(emailEdt.getText().toString(), pwdEdt.getText().toString());
+                        }
+                    }
+                    else{
+                        Toast.makeText(CreateAccountActivity.this, "password does not match", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
@@ -113,13 +134,17 @@ public class CreateAccountActivity extends AppCompatActivity {
         });
 
     }
+    private boolean validateGuideId(String guideId){
+        String regex = "[a-zA-Z]\\d[a-zA-Z]{2}\\d{4,5}";
+        // Check if guideId matches the pattern
+        return guideId.matches(regex);
+    }
     private boolean validatePassword(String pass, String cnfpass) {
         if(!pass.isEmpty() && !cnfpass.isEmpty()){
             return pass.equals(cnfpass);
-        }else{
-            Toast.makeText(CreateAccountActivity.this,"Password Don't match",Toast.LENGTH_LONG).show();
-            return false;
         }
+        Toast.makeText(CreateAccountActivity.this,"Password Don't match",Toast.LENGTH_LONG).show();
+        return false;
     }
     private void Register(String email,String password){
         mAuth.createUserWithEmailAndPassword(email, password)
