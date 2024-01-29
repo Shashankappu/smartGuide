@@ -1,4 +1,4 @@
-package com.shashanksp.smartsonics;
+package com.shashanksp.smartsonics.Utils;
 
 import android.util.Log;
 

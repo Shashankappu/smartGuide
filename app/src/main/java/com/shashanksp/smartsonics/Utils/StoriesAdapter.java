@@ -1,4 +1,4 @@
-package com.shashanksp.smartsonics;
+package com.shashanksp.smartsonics.Utils;
 
 
 import android.content.Context;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.shashanksp.smartsonics.R;
+
 import java.util.ArrayList;
 
 public class StoriesAdapter extends BaseAdapter {

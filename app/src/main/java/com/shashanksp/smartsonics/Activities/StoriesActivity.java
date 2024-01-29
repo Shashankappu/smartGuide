@@ -1,4 +1,4 @@
-package com.shashanksp.smartsonics;
+package com.shashanksp.smartsonics.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -14,6 +14,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.shashanksp.smartsonics.R;
+import com.shashanksp.smartsonics.Utils.StoriesAdapter;
+import com.shashanksp.smartsonics.Utils.Story;
 
 import java.util.ArrayList;
 

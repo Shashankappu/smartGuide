@@ -1,4 +1,4 @@
-package com.shashanksp.smartsonics;
+package com.shashanksp.smartsonics.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.shashanksp.smartsonics.R;
 
 public class SignInActivity extends AppCompatActivity {
     Button loginbtn;

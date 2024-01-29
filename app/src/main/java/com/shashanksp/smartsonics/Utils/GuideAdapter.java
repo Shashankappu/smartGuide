@@ -1,4 +1,4 @@
-package com.shashanksp.smartsonics;
+package com.shashanksp.smartsonics.Utils;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.shashanksp.smartsonics.R;
 
 import java.util.ArrayList;
 

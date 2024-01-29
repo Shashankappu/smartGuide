@@ -1,10 +1,12 @@
-package com.shashanksp.smartsonics;
+package com.shashanksp.smartsonics.Activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.shashanksp.smartsonics.R;
 
 public class SplashActivity extends AppCompatActivity {
     private static final String PREF_GUIDE_ID = "guideId";

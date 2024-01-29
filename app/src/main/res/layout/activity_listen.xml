@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListenActivity">
+    tools:context=".Activities.ListenActivity">
 
     <RelativeLayout
         android:id="@+id/listenRl"
@@ -17,28 +17,37 @@
             android:layout_height="wrap_content"
             android:text="Art Name"
             android:textSize="28sp"
-            android:textColor="#000000"
+            android:textColor="#616161"
+            android:fontFamily="sans-serif-condensed"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="20dp" />
 
-        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-            android:id="@+id/ytvideo"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ytvdeoll"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:layout_below="@id/title_text"
             android:layout_centerInParent="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp" />
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            app:cardCornerRadius="10dp">
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/ytvideo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/timerTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ytvideo"
+            android:layout_below="@id/ytvdeoll"
             android:layout_alignParentRight="true"
             android:textSize="18sp"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:textColor="@color/black"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
@@ -72,6 +81,7 @@
                     android:textSize="18sp"
                     android:fontFamily="sans-serif-condensed"
                     android:gravity="start"
+                    android:paddingBottom="70dp"
                     android:hint="Content of the Art will be displayed here this is a dummy text " />
             </ScrollView>
 
@@ -119,7 +129,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="5dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/custom_button_bg"
         android:backgroundTint="@color/black"

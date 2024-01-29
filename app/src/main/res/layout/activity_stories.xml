@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#536DFE"
-    tools:context=".StoriesActivity">
+    tools:context=".Activities.StoriesActivity">
 
    <androidx.appcompat.widget.Toolbar
       android:id="@+id/toolbar"
@@ -19,6 +19,7 @@
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
          android:src="@drawable/home"
+          android:layout_margin="10dp"
           app:tint="@color/black" />
       <TextView
           android:layout_width="150dp"
@@ -27,8 +28,17 @@
          android:textSize="28sp"
           android:gravity="center_vertical"
           android:paddingHorizontal="8dp"
+          android:layout_gravity="center"
           android:textColor="@color/black"
          android:textStyle="italic"/>
+      <ImageView
+          android:id="@+id/searchBtn"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_gravity="end"
+          android:layout_margin="10dp"
+          android:src="@drawable/search"
+          app:tint="@color/black" />
 
    </androidx.appcompat.widget.Toolbar>
 
@@ -41,7 +51,7 @@
        android:dividerHeight="3dp"
        android:paddingHorizontal="5dp"
        android:scrollbarStyle="outsideInset"
-       tools:listitem="@layout/stories_item" />\
+       tools:listitem="@layout/stories_item" />
 
    <ProgressBar
        android:id="@+id/pgBar"

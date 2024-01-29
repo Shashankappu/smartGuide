@@ -1,4 +1,4 @@
-package com.shashanksp.smartsonics;
+package com.shashanksp.smartsonics.Activities;
 
 import android.Manifest;
 import android.content.Context;
@@ -26,7 +26,7 @@ import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.zxing.Result;
-
+import com.shashanksp.smartsonics.R;
 
 
 public class HomeScanActivity extends AppCompatActivity {
@@ -127,7 +127,7 @@ public class HomeScanActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(HomeScanActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HomeScanActivity.this, "Click on Continue", Toast.LENGTH_SHORT).show();
                         artId = result.getText();
                     }
                 });
