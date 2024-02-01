@@ -11,11 +11,17 @@ import android.widget.TextView;
 import com.shashanksp.smartsonics.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StoriesAdapter extends BaseAdapter {
 
     private Context context;
     private ArrayList<Story> storiesList;
+    public StoriesAdapter(Context context, List<Story> stories) {
+        super();
+    }
+
+
 
     public StoriesAdapter(Context context, ArrayList<Story> storiesList) {
         this.context = context;
