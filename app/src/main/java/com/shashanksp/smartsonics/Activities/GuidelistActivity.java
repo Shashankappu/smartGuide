@@ -1,20 +1,17 @@
 package com.shashanksp.smartsonics.Activities;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +20,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.shashanksp.smartsonics.Models.User;
 import com.shashanksp.smartsonics.Utils.GuideAdapter;
 import com.shashanksp.smartsonics.R;
 
@@ -54,7 +50,6 @@ public class GuidelistActivity extends AppCompatActivity implements GuideAdapter
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         guideAdapter = new GuideAdapter(guideIds, GuidelistActivity.this, artId);
         recyclerView.setAdapter(guideAdapter);
-
     }
     private void fetchGuideIdsFromFirebase() {
         DatabaseReference guidesReference = FirebaseDatabase.getInstance().getReference().child(artId);
@@ -106,16 +101,17 @@ public class GuidelistActivity extends AppCompatActivity implements GuideAdapter
         detailsReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("GuidelistActivity", "DataSnapshot: " + dataSnapshot.toString());
+                Log.d("GuidelistActivity", "DataSnapshot: " + dataSnapshot);
                 if (dataSnapshot.exists()) {
                     String details = dataSnapshot.child("Details").getValue(String.class);
                     Intent i = new Intent(GuidelistActivity.this,ListenActivity.class);
                     i.putExtra("details",details);
                     i.putExtra("artId",artId);
                     startActivity(i);
-                   Toast.makeText(GuidelistActivity.this, "Details for Guide " + guideId + ": " + details, Toast.LENGTH_SHORT).show();
+                    finish();
+                  // Toast.makeText(GuidelistActivity.this, "Details for Guide " + guideId + ": " + details, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(GuidelistActivity.this, "Details for Guide" + guideId + "do not exist.", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(GuidelistActivity.this, "Details for Guide" + guideId + "do not exist.", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override

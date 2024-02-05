@@ -136,6 +136,13 @@ public class HomeScanActivity extends AppCompatActivity {
             }
         });
 
+        scannerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCodeScanner.startPreview();
+            }
+        });
+
         scanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,7 +195,7 @@ public class HomeScanActivity extends AppCompatActivity {
             intent = new Intent(HomeScanActivity.this, GuidelistActivity.class);
         }
         intent.putExtra("artId", artId);
-        Toast.makeText(HomeScanActivity.this, "Logging in as Guide? "+isGuide, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(HomeScanActivity.this, "Logging in as Guide? "+isGuide, Toast.LENGTH_SHORT).show();
         startActivity(intent);
         finish();
     }

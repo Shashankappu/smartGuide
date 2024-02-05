@@ -28,8 +28,6 @@ public class AddStoryActivity extends AppCompatActivity {
     EditText storiesEdt,artnameEdt;
     Button addBtn,clearBtn;
     String username;
-    private static final String USERNAME = "anonymous user";
-    private static final String USER_EMAIL = "email user";
 
     private DatabaseReference databaseReference;
     @Override
@@ -42,7 +40,7 @@ public class AddStoryActivity extends AppCompatActivity {
         artnameEdt = findViewById(R.id.artnameEdt);
         addBtn = findViewById(R.id.addBtn);
         clearBtn = findViewById(R.id.clearBtn);
-        username = getUsernameFromPrefs();
+        getUsernameFromFirebase();
         databaseReference = FirebaseDatabase.getInstance().getReference("stories");
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
@@ -106,15 +104,10 @@ public class AddStoryActivity extends AppCompatActivity {
     private String generateUniqueId() {
         return String.valueOf(System.currentTimeMillis());
     }
-    private String getUsernameFromPrefs() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        return sharedPreferences.getString(USERNAME,"anonymous user");
-    }
-    // Update the getUsernameFromPrefs method in your AddStoryActivity
 
     private void getUsernameFromFirebase() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String userEmail = sharedPreferences.getString(USER_EMAIL, "");
+        String userEmail = sharedPreferences.getString("email", "");
 
         if (!userEmail.isEmpty()) {
             DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -126,10 +119,8 @@ public class AddStoryActivity extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         User user = dataSnapshot.getValue(User.class);
                         if (user != null) {
-                            String username = user.username;
-                            // Use the obtained username as needed
-                            // Now, you can pass the username to the addstorytoFirebase method or use it directly
-                            addstorytoFirebase(username);
+                            username = user.username;
+                            //addstorytoFirebase(username);
                         }
                     }
                 }
