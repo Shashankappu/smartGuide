@@ -1,4 +1,4 @@
-package com.shashanksp.smartsonics.Utils;
+package com.shashanksp.smartsonics.Models;
 
 public class Story {
     public Story(){}

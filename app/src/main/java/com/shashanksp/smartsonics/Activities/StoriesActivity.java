@@ -1,5 +1,6 @@
 package com.shashanksp.smartsonics.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,20 +18,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shashanksp.smartsonics.R;
 import com.shashanksp.smartsonics.Utils.StoriesAdapter;
-import com.shashanksp.smartsonics.Utils.Story;
+import com.shashanksp.smartsonics.Models.Story;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class StoriesActivity extends AppCompatActivity {
 
     private RelativeLayout rootlayout;
-    private ListView storiesListView;
     SearchView searchView;
     private StoriesAdapter storiesAdapter;
     private DatabaseReference storiesReference;
@@ -49,7 +47,7 @@ public class StoriesActivity extends AppCompatActivity {
         pgBar = findViewById(R.id.pgBar);
         pgBar.setVisibility(View.VISIBLE);
 
-        storiesListView = findViewById(R.id.storiesLV);
+        ListView storiesListView = findViewById(R.id.storiesLV);
 
         // Set up Firebase Database reference to "stories" node
         storiesReference = FirebaseDatabase.getInstance().getReference("stories");
@@ -152,7 +150,7 @@ public class StoriesActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
+                public void onCancelled(@NonNull DatabaseError databaseError) {
                     // Handle error if data retrieval is unsuccessful
                     pgBar.setVisibility(View.GONE);
                 }

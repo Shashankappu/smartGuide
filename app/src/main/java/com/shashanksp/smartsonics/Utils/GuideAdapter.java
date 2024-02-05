@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.GuideViewHolder> {
 
-    private ArrayList<String> guideIds;
-    private OnGuideClickListener onGuideClickListener; // Interface for click events
-    private String artId;
+    private final ArrayList<String> guideIds;
+    private final OnGuideClickListener onGuideClickListener; // Interface for click events
+    private final String artId;
     public GuideAdapter(ArrayList<String> guideIds, OnGuideClickListener onGuideClickListener, String artId) {
         this.guideIds = guideIds;
         this.onGuideClickListener = onGuideClickListener;
@@ -41,7 +41,7 @@ public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.GuideViewHol
     }
 
     public class GuideViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView guideIdTextView;
+        private final TextView guideIdTextView;
 
         public GuideViewHolder(@NonNull View itemView) {
             super(itemView);

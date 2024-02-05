@@ -1,5 +1,8 @@
 package com.shashanksp.smartsonics.Activities;
 
+
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -13,15 +16,20 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.shashanksp.smartsonics.Models.User;
 import com.shashanksp.smartsonics.R;
-import com.shashanksp.smartsonics.Utils.Story;
+import com.shashanksp.smartsonics.Models.Story;
 public class AddStoryActivity extends AppCompatActivity {
     EditText storiesEdt,artnameEdt;
     Button addBtn,clearBtn;
     String username;
     private static final String USERNAME = "anonymous user";
+    private static final String USER_EMAIL = "email user";
 
     private DatabaseReference databaseReference;
     @Override
@@ -102,4 +110,36 @@ public class AddStoryActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         return sharedPreferences.getString(USERNAME,"anonymous user");
     }
+    // Update the getUsernameFromPrefs method in your AddStoryActivity
+
+    private void getUsernameFromFirebase() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String userEmail = sharedPreferences.getString(USER_EMAIL, "");
+
+        if (!userEmail.isEmpty()) {
+            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+            String userId = userEmail.replace(".", ",");
+
+            usersRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        User user = dataSnapshot.getValue(User.class);
+                        if (user != null) {
+                            String username = user.username;
+                            // Use the obtained username as needed
+                            // Now, you can pass the username to the addstorytoFirebase method or use it directly
+                            addstorytoFirebase(username);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Handle database error if needed
+                }
+            });
+        }
+    }
+
 }

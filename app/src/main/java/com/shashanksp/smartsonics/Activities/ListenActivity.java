@@ -144,6 +144,7 @@ public class ListenActivity extends AppCompatActivity implements LoaderManager.L
                     .setSmallIcon(R.drawable.mic_on)
                     .setContentTitle("TTS is on")
                     .setContentText("Text-to-Speech is active")
+                    .setSilent(true)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
             NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);

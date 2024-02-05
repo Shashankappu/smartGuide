@@ -16,21 +16,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-//        ndk{
-//            abiFilters "armeabi-v7a", "arm64-v8a"
-//        }
-//        python {
-//            version "3.11"
-//
-//        }
-//        python{
-//            buildPython "usr/bin/python3.11"
-//        }
-//        python{
-//            pip{
-//                install "scikit-learn"
-//            }
-//        }
     }
 
 
@@ -44,11 +29,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-//    sourceSets{
-//        main{
-//            python.srcDirs "src/main/python"
-//        }
-//    }
 
 }
 
@@ -57,7 +37,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.firebase:firebase-auth:22.3.0'
+    implementation 'com.google.firebase:firebase-auth:22.3.1'
     implementation 'com.google.firebase:firebase-database:20.3.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -76,7 +56,7 @@ dependencies {
 
     //https request
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
-    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'com.google.code.gson:gson:2.10.1'
 
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28'
 

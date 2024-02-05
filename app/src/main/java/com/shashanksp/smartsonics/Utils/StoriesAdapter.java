@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.shashanksp.smartsonics.Models.Story;
 import com.shashanksp.smartsonics.R;
 
 import java.util.ArrayList;
