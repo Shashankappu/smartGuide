@@ -17,7 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.shashanksp.smartsonics.R;
 import com.shashanksp.smartsonics.Utils.Story;
-
 public class AddStoryActivity extends AppCompatActivity {
     EditText storiesEdt,artnameEdt;
     Button addBtn,clearBtn;
