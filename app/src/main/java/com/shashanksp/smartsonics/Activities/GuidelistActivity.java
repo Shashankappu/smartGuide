@@ -52,7 +52,7 @@ public class GuidelistActivity extends AppCompatActivity implements GuideAdapter
         recyclerView.setAdapter(guideAdapter);
     }
     private void fetchGuideIdsFromFirebase() {
-        DatabaseReference guidesReference = FirebaseDatabase.getInstance().getReference().child(artId);
+        DatabaseReference guidesReference = FirebaseDatabase.getInstance().getReference().child("Arts").child(artId);
         guidesReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -96,6 +96,7 @@ public class GuidelistActivity extends AppCompatActivity implements GuideAdapter
     private void retrieveDetails(String artId, String guideId) {
         // Build the database reference based on the provided art ID and guide ID
         DatabaseReference detailsReference = FirebaseDatabase.getInstance().getReference()
+                .child("Arts")
                 .child(artId)
                 .child(guideId);
         detailsReference.addListenerForSingleValueEvent(new ValueEventListener() {

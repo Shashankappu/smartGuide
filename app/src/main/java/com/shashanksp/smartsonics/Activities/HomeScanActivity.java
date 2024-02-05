@@ -45,7 +45,6 @@ public class HomeScanActivity extends AppCompatActivity {
     private ImageView logoutBtn;
     private TextView addstoryTV,viewstoryTV;
     private String artId;
-
     private Animation fromBottomAnim;
     private Animation toBottomAnim;
     private Animation rotateClockwiseAnim;
@@ -63,7 +62,7 @@ public class HomeScanActivity extends AppCompatActivity {
         initializeAnimations();
 
         userEmail = getUserEmailFromPrefs();
-        Toast.makeText(HomeScanActivity.this, "hello "+ userEmail, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(HomeScanActivity.this, "hello "+ userEmail, Toast.LENGTH_SHORT).show();
 
         mainFabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,13 +188,12 @@ public class HomeScanActivity extends AppCompatActivity {
 
     private void startNextActivity() {
         Intent intent;
-        if (isGuide) {
+        if (isGuide != null && isGuide) {
             intent = new Intent(HomeScanActivity.this, EnterContentActivity.class);
         } else {
             intent = new Intent(HomeScanActivity.this, GuidelistActivity.class);
         }
         intent.putExtra("artId", artId);
-       // Toast.makeText(HomeScanActivity.this, "Logging in as Guide? "+isGuide, Toast.LENGTH_SHORT).show();
         startActivity(intent);
         finish();
     }

@@ -1,10 +1,7 @@
 package com.shashanksp.smartsonics.Activities;
 
-
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,7 +25,6 @@ public class AddStoryActivity extends AppCompatActivity {
     EditText storiesEdt,artnameEdt;
     Button addBtn,clearBtn;
     String username;
-
     private DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +120,6 @@ public class AddStoryActivity extends AppCompatActivity {
                         }
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     // Handle database error if needed
