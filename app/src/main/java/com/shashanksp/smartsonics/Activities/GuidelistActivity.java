@@ -88,7 +88,6 @@ public class GuidelistActivity extends AppCompatActivity implements GuideAdapter
 
         });
     }
-
     @Override
     public void onGuideClick(String artId ,String guideId) {
         retrieveDetails(artId, guideId);
