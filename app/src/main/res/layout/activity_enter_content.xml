@@ -15,6 +15,7 @@
         android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp" />
+
     <EditText
         android:id="@+id/Artname"
         android:layout_width="match_parent"
