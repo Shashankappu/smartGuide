@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/hawamahal"
     tools:context=".Activities.GuidelistActivity">
 
     <TextView
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Select your Guide"
         android:textSize="28sp"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp" />
 
@@ -28,14 +29,14 @@
         tools:listitem="@layout/item_guide"
         android:padding="10dp"/>
 
-        <ProgressBar
-            android:id="@+id/pgBar_guide"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerInParent="true"
-            android:progressTint="@color/black"
-            android:indeterminateTint="@color/black"
-            android:visibility="visible"/>
+    <ProgressBar
+        android:id="@+id/pgBar_guide"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/black"
+        android:indeterminateTint="@color/black"
+        android:visibility="visible"/>
 
 
 </RelativeLayout>

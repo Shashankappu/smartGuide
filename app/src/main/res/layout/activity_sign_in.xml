@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg1"
     tools:context=".Activities.SignInActivity">
 
     <TextView
@@ -17,18 +17,18 @@
         android:layout_marginBottom="5dp"
         android:text="@string/app_name"
         android:textSize="34sp"
+        android:textColor="@color/black"
         android:textStyle="bold" />
-
 
     <TextView
         android:id="@+id/welcomeTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/AppName"
         android:text="Welcome back!"
-        android:textColor="#706D6D"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
     <TextView
@@ -38,42 +38,26 @@
         android:layout_below="@id/welcomeTxt"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="15dp"
         android:text="Sign In"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="40sp" />
-
-    <EditText
-        android:id="@+id/GuideID_edt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/custom_button_bg"
-        android:layout_below="@id/title_text"
-        android:layout_marginTop="16dp"
-        android:hint="Guide ID"
-        android:textColorHint="#888888"
-        android:textColor="#000000"
-        android:visibility="gone"
-        android:paddingRight="10dp"
-        android:longClickable="false"
-        android:padding="12dp" />
 
     <EditText
         android:id="@+id/email_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/GuideID_edt"
+        android:layout_below="@id/title_text"
         android:layout_marginStart="32dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/custom_button_bg"
         android:hint="Email"
+        android:alpha="0.8"
         android:inputType="textEmailAddress"
         android:padding="12dp"
         android:textColor="#000000"
-        android:textColorHint="#888888" />
+        android:textColorHint="@color/black" />
 
     <EditText
         android:id="@+id/password_edittext"
@@ -86,11 +70,12 @@
         android:background="@drawable/custom_button_bg"
         android:hint="Password"
         android:inputType="textPassword"
+        android:alpha="0.8"
         android:longClickable="false"
         android:padding="12dp"
         android:paddingRight="10dp"
         android:textColor="#000000"
-        android:textColorHint="#888888" />
+        android:textColorHint="@color/black" />
 
     <Button
         android:id="@+id/login_button"
@@ -104,8 +89,8 @@
         android:backgroundTint="@color/black"
         android:text="Login"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="26sp" />
+        android:textColor="@color/white"
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/donthaveacc_text"
@@ -115,7 +100,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="Don't have an account yet?"
-        android:textColor="#595757"
+        android:textColor="@color/white"
         android:textSize="16sp" />
 
     <TextView
@@ -125,7 +110,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="2dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="10dp"
         android:text="Sign up"
         android:textColor="#0779EC"
         android:textSize="16sp" />

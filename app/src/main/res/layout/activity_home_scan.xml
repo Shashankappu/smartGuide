@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/root_layout"
+    android:background="@drawable/kanyakumari"
     tools:context=".Activities.HomeScanActivity">
 
     <TextView
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="scan the qr code"
-        android:textSize="22sp"
-        android:textColor="#000000"
+        android:text="Scan the qr code"
+        android:textSize="26sp"
+        android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 
@@ -79,6 +80,7 @@
             app:srcCompat="@drawable/add_story_fab"
             android:backgroundTint="@color/black"
             app:tint="@color/white"
+            app:backgroundTint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="wrap_content"
@@ -91,6 +93,7 @@
             app:srcCompat="@drawable/view_story"
             android:backgroundTint="@color/black"
             android:tint="@color/white"
+            app:backgroundTint="@color/black"
             android:layout_marginBottom="12dp"
             app:layout_constraintBottom_toTopOf="@id/mainFabBtn"
             app:layout_constraintEnd_toEndOf="@id/mainFabBtn"
@@ -102,6 +105,7 @@
             app:srcCompat="@drawable/addstory"
             android:backgroundTint="@color/black"
             android:tint="@color/white"
+            app:backgroundTint="@color/black"
             android:layout_marginBottom="12dp"
             app:layout_constraintBottom_toTopOf="@id/viewstoryFabBtn"
             app:layout_constraintEnd_toEndOf="@id/mainFabBtn"

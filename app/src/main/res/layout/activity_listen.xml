@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg1"
     tools:context=".Activities.ListenActivity">
 
     <RelativeLayout
@@ -17,10 +18,10 @@
             android:layout_height="wrap_content"
             android:text="Art Name"
             android:textSize="28sp"
-            android:textColor="#616161"
+            android:textColor="@color/black"
             android:fontFamily="sans-serif-condensed"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="10dp" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/ytvdeoll"
@@ -61,6 +62,7 @@
             android:layout_marginTop="10dp"
             android:layout_below="@id/timerTV"
             app:cardCornerRadius="10dp"
+            android:alpha="0.9"
             android:backgroundTint="@color/white"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="20dp"
