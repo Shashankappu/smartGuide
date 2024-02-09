@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ayodhya"
+    android:background="@drawable/top"
     tools:context=".Activities.AddStoryActivity">
 
     <RelativeLayout
@@ -13,15 +13,16 @@
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/homeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
             android:backgroundTint="@color/white"
             android:src="@drawable/home"
-            android:layout_centerInParent="true"
-            app:tint="@color/black" />
+            app:tint="@color/white" />
 
         <TextView
             android:id="@+id/title_text"
@@ -30,7 +31,7 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="Add a story"
-            android:textColor="#000000"
+            android:textColor="@color/white"
             android:textSize="28sp"
             android:textStyle="bold" />
     </RelativeLayout>
@@ -47,7 +48,7 @@
         android:hint="Name of the place"
         android:textColorHint="@color/black"
         android:textColor="@color/black"
-        android:alpha="0.7"
+        android:alpha="0.8"
         android:paddingEnd="10dp"
         android:maxLines="1"
         android:longClickable="false"
@@ -92,8 +93,6 @@
             android:layout_marginEnd="4dp"
             android:elevation="10dp"
             android:shadowColor="@color/black"
-            android:shadowDx="4"
-            android:shadowDy="4"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="18sp" />

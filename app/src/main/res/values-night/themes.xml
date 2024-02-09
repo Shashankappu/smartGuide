@@ -2,5 +2,12 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Smartsonic" parent="Theme.AppCompat.Light.NoActionBar"/>
 
-    <style name="Theme.Smartsonic" parent="Base.Theme.Smartsonic" />
+    <style name="Theme.Smartsonic" parent="Base.Theme.Smartsonic" >
+        <item name="colorPrimary">@color/black</item>
+
+        <!-- Defining that new color in ColorPrimaryDark -->
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/black</item>
+    </style>
+
 </resources>

@@ -29,6 +29,7 @@
         android:layout_marginBottom="30dp"
         android:src="@drawable/logout" />
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/scannerll"
         android:layout_width="500dp"
@@ -59,6 +60,7 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/custom_button_bg"
         android:backgroundTint="@color/black"
+        android:textSize="20sp"
         android:textColor="@color/white"
         android:padding="10dp"
         android:elevation="12dp"

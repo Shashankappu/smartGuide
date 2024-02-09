@@ -48,8 +48,8 @@
         android:paddingRight="10dp"
         android:longClickable="false"
         android:padding="12dp"
-        android:gravity="top"
-        android:maxLength="1000" />
+        android:gravity="top" />
+
     <Button
         android:id="@+id/submitBtn"
         android:layout_width="match_parent"
