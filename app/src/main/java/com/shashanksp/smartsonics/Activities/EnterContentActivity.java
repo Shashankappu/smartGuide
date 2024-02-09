@@ -43,7 +43,7 @@ public class EnterContentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (artId.isEmpty() || details.getText().toString().isEmpty()) {
-                    Toast.makeText(EnterContentActivity.this,"Enter the details"+guideId+artId,Toast.LENGTH_LONG).show();
+                    Toast.makeText(EnterContentActivity.this,"Please enter the details",Toast.LENGTH_LONG).show();
                 }else{
                     DatabaseReference artReference = databaseReference.child("Arts").child(artId).child(username + "," + guideId);
                     artReference.child("Details").setValue(details.getText().toString());
