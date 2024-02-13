@@ -10,6 +10,9 @@ The SmartSonic Guide featuring YouTube Video Integration is an innovative audio 
 - **Real-time Updates**: Prioritizes real-time updates to ensure users have access to the latest and most engaging content.
 - **Accessibility Features**: Incorporates text-to-speech capabilities to cater to users with visual impairments, ensuring an inclusive exploration experience.
 
+## Screenshots of UI:
+
+
 ## Getting Started:
 
 To start using the SmartSonic Guide with YouTube Video Integration, follow these steps:
