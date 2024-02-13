@@ -11,6 +11,11 @@ The SmartSonic Guide featuring YouTube Video Integration is an innovative audio 
 - **Accessibility Features**: Incorporates text-to-speech capabilities to cater to users with visual impairments, ensuring an inclusive exploration experience.
 
 ## Screenshots of UI:
+![Slide1](https://github.com/Shashankappu/smartGuide/assets/50190738/3ece0d1d-56ba-40b1-809e-f3060b8f3728)
+![Slide2](https://github.com/Shashankappu/smartGuide/assets/50190738/10f1ce11-c4fc-49d3-b395-b4f8d4ec9d41)
+![Slide1](https://github.com/Shashankappu/smartGuide/assets/50190738/d5cede18-5dcd-4eee-b3b9-43f4e53f2677)
+
+
 
 
 ## Getting Started:
